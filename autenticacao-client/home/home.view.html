@@ -1,0 +1,26 @@
+﻿<h1>Olá, {{globals.currentUser.username}}</h1>
+
+<h3>E-mail</h3>
+<p>{{globals.currentUser.email}}</p>
+
+<span style="display: {{globals.currentUser.tokenApp ? 'block' : 'none'}}">
+	<h3>Token App</h3>
+	<p>{{globals.currentUser.tokenApp}}</p>
+</span>
+
+<span style="display: {{globals.currentUser.tokenFB ? 'block' : 'none'}}">
+	<h3>Token Facebook</h3>
+	<p>{{globals.currentUser.tokenFB}}</p>
+
+	<span style="display: {{vm.sexo ? 'block' : 'none'}}">	
+		<h3>Sexo</h3>
+		<p>{{vm.sexo}}</p>
+	</span>
+	
+	<span style="display: {{vm.aniversario  ? 'block' : 'none'}}">
+		<h3>Aniversario</h3>
+		<p>{{vm.aniversario}}</p>
+	</span>
+	
+	<button ng-click="vm.getInfoFacebook()" class="btn btn-primary">Carregar dados do Facebook</button>
+</span>

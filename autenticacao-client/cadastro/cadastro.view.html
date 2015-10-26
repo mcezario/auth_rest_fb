@@ -1,0 +1,47 @@
+<div class="col-md-6 col-md-offset-3">
+    
+    <div class="bs-callout bs-callout-info" id="callout-alerts-dismiss-plugin" style="display: {{continuacaoCadastro.fb ? 'block' : 'none' }}">
+	    <h4>Facebook</h4>
+	    <p>Você fez a autenticação via facebook, porém, ainda não possui cadastro no sistema.</p>
+	    <p>Por favor, conclua seu cadastro.</p>
+	</div>
+	
+	
+    <h2>Cadastro Usuário</h2>
+    
+    <div ng-show="vm.error" class="alert alert-danger">{{vm.error}}</div>
+    
+    <form name="form" ng-submit="vm.cadastro()" role="form">
+        <div class="form-group" ng-class="{ 'has-error': form.nome.$dirty && form.nome.$error.required }">
+            <label for="nome">Nome</label>
+            <input type="text" name="nome" id="nome" class="form-control" ng-model="vm.user.nome" required ng-init="vm.user.nome = vm.nome" />
+            <span ng-show="form.nome.$dirty && form.nome.$error.required" class="help-block">Nome é obrigatório</span>
+        </div>
+        		<div class="form-group" ng-class="{ 'has-error': form.email.$dirty && (form.email.$error.required || form.email.$error.uniqueEmail) }">
+            <label for="email">E-mail</label>
+            <input type="email" name="email" id="email" class="form-control" ng-model="vm.user.email" required data-unique-email ng-init="vm.user.email = vm.email" ng-disabled="vm.disabledEmail" />
+            <span ng-show="form.email.$error.uniqueEmail" class="help-block">E-mail em uso. Escolha outro e-mail.</span>
+            <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">O campo e-mail é obrigatório</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.senha.$dirty && form.senha.$error.required }">
+            <label for="senha">Senha</label>
+            <input type="password" name="senha" id="senha" class="form-control" ng-model="vm.user.senha" required />
+            <span ng-show="form.senha.$dirty && form.senha.$error.required" class="help-block">O campo senha é obrigatório</span>
+        </div>
+        
+        <div class="form-group" ng-class="{ 'has-error': form.confirm_password.$dirty && form.confirm_password.$error.required }">
+            <label for="password_verify">Confirme a Senha</label>
+			<input type="password" name="confirm_password" id="confirm_password" class="form-control" data-password-verify="vm.user.senha" 
+				ng-model='vm.confirm_password' required>
+     
+            <span ng-show="form.senha.$dirty && form.confirm_password.$error.passwordVerify" class="help-block">Senhas não conferem</span>
+        </div>
+        
+        <div class="form-actions">
+            <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Cadastro</button>
+            <a href="#/" class="btn btn-link">Cancel</a>
+        </div>
+
+    </form>
+
+</div>
